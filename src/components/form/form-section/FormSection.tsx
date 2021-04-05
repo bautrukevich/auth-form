@@ -1,4 +1,5 @@
 import React from "react";
+import "./form-section.css";
 
 type FormSectionProps = React.PropsWithChildren<{}>;
 

@@ -5,11 +5,11 @@ import { Header } from "./components/header/Header";
 import { Content } from "./components/content/Content";
 import { Wrapper } from "./components/wrapper/Wrapper";
 import { Form } from "./components/form/Form";
-import { FormSection } from "./components/form/FormSection";
-import { Label } from "./components/form/Label";
-import { Input } from "./components/form/Input";
-import { PasswordInput } from "./components/form/PasswordInput";
-import { SubmitButton } from "./components/form/SubmitButton";
+import { FormSection } from "./components/form/form-section/FormSection";
+import { Label } from "./components/form/label/Label";
+import { Input } from "./components/form/input/Input";
+import { PasswordInput } from "./components/form/password-input/PasswordInput";
+import { Button } from "./components/form/button/Button";
 import { Footer } from "./components/footer/Footer";
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
                 <PasswordInput />
               </Label>
             </FormSection>
-            <SubmitButton>Войти</SubmitButton>
+            <Button type="submit">Войти</Button>
           </Form>
         </Wrapper>
       </Content>

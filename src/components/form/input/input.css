@@ -1,0 +1,22 @@
+.input {
+  border: 1px solid #ccc;
+  font-size: 16px;
+  padding: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-error {
+  font-size: 12px;
+  line-height: 15px;
+  color: #e53e3e;
+  opacity: 0;
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  transition: opacity 0.3s;
+}
+
+.input-error_active {
+  opacity: 1;
+}

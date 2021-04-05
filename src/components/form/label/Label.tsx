@@ -1,4 +1,5 @@
 import React from "react";
+import "./label.css";
 
 type LabelProps = React.PropsWithChildren<{
   text: string;
@@ -6,8 +7,8 @@ type LabelProps = React.PropsWithChildren<{
 
 export const Label = ({ text, children }: LabelProps) => {
   return (
-    <label className="form__label">
-      <span className="form__label-text">{text}</span>
+    <label className="label">
+      <span className="label-text">{text}</span>
       {children}
     </label>
   );

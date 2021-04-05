@@ -1,4 +1,5 @@
 import React from "react";
+import "./input.css";
 
 type InputProps = React.HTMLAttributes<HTMLInputElement> & {
   type?: string;
@@ -7,8 +8,8 @@ type InputProps = React.HTMLAttributes<HTMLInputElement> & {
 export const Input = ({ type = "text", ...rest }: InputProps) => {
   return (
     <>
-      <input className="form__input" type={type} {...rest} />
-      <span className="form__input-error" />
+      <input className="input" type={type} {...rest} />
+      <span className="input-error" />
     </>
   );
 };

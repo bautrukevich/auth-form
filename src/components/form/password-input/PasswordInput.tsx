@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Input } from "./Input";
-import { TogglePasswordButton } from "./TogglePasswordButton";
+import { Input } from "../input/Input";
+import { TogglePasswordButton } from "./toggle-password-button/TogglePasswordButton";
 
 export const PasswordInput = () => {
   return (
