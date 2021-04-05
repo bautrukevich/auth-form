@@ -1,5 +1,5 @@
 import React from "react";
-import "./form.css";
+import styles from "./form.module.css";
 
 type FormProps = React.PropsWithChildren<{
   onSubmit: React.FormEventHandler<HTMLFormElement>;
@@ -7,7 +7,7 @@ type FormProps = React.PropsWithChildren<{
 
 export const Form = ({ onSubmit, children }: FormProps) => {
   return (
-    <form className="form" action="#" method="post" noValidate onSubmit={onSubmit}>
+    <form className={styles.form} action="#" method="post" noValidate onSubmit={onSubmit}>
       {children}
     </form>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import "./button.css";
+import styles from "./button.module.css";
 
 type SubmitButtonProps = React.PropsWithChildren<{
   type: "button" | "submit" | "reset";
@@ -7,7 +7,7 @@ type SubmitButtonProps = React.PropsWithChildren<{
 
 export const Button = ({ type, children }: SubmitButtonProps) => {
   return (
-    <button className="button" type={type}>
+    <button className={styles.button} type={type}>
       {children}
     </button>
   );

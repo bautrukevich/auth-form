@@ -1,8 +1,8 @@
 import React from "react";
-import "./content.css";
+import styles from "./content.module.css";
 
 type ContentProps = React.PropsWithChildren<{}>;
 
 export const Content = ({ children }: ContentProps) => {
-  return <main className="content">{children}</main>;
+  return <main className={styles.content}>{children}</main>;
 };

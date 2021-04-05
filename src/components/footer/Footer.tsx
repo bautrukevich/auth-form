@@ -1,6 +1,8 @@
 import React from "react";
-import "./footer.css";
-import "../section/section.css";
+import classNames from "classnames";
+
+import styles from "./footer.module.css";
+import sectionStyles from "../section/section.module.css";
 
 type FooterProps = {
   companyName: string;
@@ -10,8 +12,8 @@ export const Footer = ({ companyName }: FooterProps) => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="footer section">
-      <p className="footer__copyright">
+    <footer className={classNames(styles.footer, sectionStyles.section)}>
+      <p className={styles.footer__copyright}>
         © {currentYear} {companyName}
       </p>
     </footer>

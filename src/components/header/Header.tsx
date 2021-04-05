@@ -1,6 +1,8 @@
 import React from "react";
-import "./header.css";
-import "../section/section.css";
+import classNames from "classnames";
+
+import styles from "./header.module.css";
+import sectionStyles from "../section/section.module.css";
 
 import logo from "./logo.svg";
 
@@ -10,8 +12,8 @@ type HeaderProps = {
 
 export const Header = ({ companyName }: HeaderProps) => {
   return (
-    <header className="header section">
-      <img src={logo} alt={`Логотип проекта ${companyName}`} className="logo header__logo" />
+    <header className={classNames(styles.header, sectionStyles.section)}>
+      <img src={logo} alt={`Логотип проекта ${companyName}`} className={styles.header__logo} />
     </header>
   );
 };

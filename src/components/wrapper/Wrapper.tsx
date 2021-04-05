@@ -1,6 +1,8 @@
 import React from "react";
-import "./wrapper.css";
-import "../section/section.css";
+import classNames from "classnames";
+
+import styles from "./wrapper.module.css";
+import sectionStyles from "../section/section.module.css";
 
 type WrapperProps = React.PropsWithChildren<{
   title: string;
@@ -8,8 +10,8 @@ type WrapperProps = React.PropsWithChildren<{
 
 export const Wrapper = ({ title, children }: WrapperProps) => {
   return (
-    <section className="wrapper section">
-      <h2 className="wrapper__title">{title}</h2>
+    <section className={classNames(styles.wrapper, sectionStyles.section)}>
+      <h2 className={styles.wrapper__title}>{title}</h2>
       {children}
     </section>
   );
