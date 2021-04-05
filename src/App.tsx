@@ -5,6 +5,11 @@ import { Header } from "./components/header/Header";
 import { Content } from "./components/content/Content";
 import { Wrapper } from "./components/wrapper/Wrapper";
 import { Form } from "./components/form/Form";
+import { FormSection } from "./components/form/FormSection";
+import { Label } from "./components/form/Label";
+import { Input } from "./components/form/Input";
+import { PasswordInput } from "./components/form/PasswordInput";
+import { SubmitButton } from "./components/form/SubmitButton";
 import { Footer } from "./components/footer/Footer";
 
 function App() {
@@ -14,41 +19,21 @@ function App() {
       <Content>
         <Wrapper title="Войти">
           <Form onSubmit={() => {}}>
-            <section className="form__section">
-              <label className="form__label" htmlFor="sign-in-email">
-                E-mail
-              </label>
-              <input className="form__input" id="sign-in-email" name="email" type="email" required />
-              <span className="form__input-error" id="sign-in-email-error" />
-            </section>
-            <section className="form__section">
-              <label className="form__label" htmlFor="current-password">
-                Пароль
-              </label>
-              <input
-                className="form__input form__input_type_password"
-                id="current-password"
-                name="password"
-                type="password"
-                required
-                minLength={8}
-              />
-              <button
-                className="form__toggle-password"
-                type="button"
-                aria-label="Показать пароль как простой текст. Предупреждение: это покажет ваш пароль на экране."
-              >
-                Показать пароль
-              </button>
-              <span className="form__input-error" id="current-password-error" />
-            </section>
-            <button className="form__submit" type="submit">
-              Войти
-            </button>
+            <FormSection>
+              <Label text="E-mail">
+                <Input />
+              </Label>
+            </FormSection>
+            <FormSection>
+              <Label text="Пароль">
+                <PasswordInput />
+              </Label>
+            </FormSection>
+            <SubmitButton>Войти</SubmitButton>
           </Form>
         </Wrapper>
       </Content>
-      <Footer copyright="© 2020 Company Inc." />
+      <Footer companyName="Company Inc." />
     </Page>
   );
 }
