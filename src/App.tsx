@@ -3,6 +3,7 @@ import React from "react";
 import { Page } from "./components/page/Page";
 import { Header } from "./components/header/Header";
 import { Content } from "./components/content/Content";
+import { Wrapper } from "./components/wrapper/Wrapper";
 import { Footer } from "./components/footer/Footer";
 
 function App() {
@@ -10,8 +11,7 @@ function App() {
     <Page>
       <Header companyName="Company Inc." />
       <Content>
-        <section className="wrapper page__section">
-          <h2 className="wrapper__title">Войти</h2>
+        <Wrapper title="Войти">
           <form className="form" action="#" method="post" noValidate autoComplete="off">
             <section className="form__section">
               <label className="form__label" htmlFor="sign-in-email">
@@ -45,7 +45,7 @@ function App() {
               Войти
             </button>
           </form>
-        </section>
+        </Wrapper>
       </Content>
       <Footer copyright="© 2020 Company Inc." />
     </Page>
