@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "./components/header/logo.svg";
+import { Content } from "./components/content/Content";
 
 function App() {
   return (
@@ -8,7 +9,7 @@ function App() {
         <header className="header page__section">
           <img src={logo} alt="Логотип проекта Company Inc." className="logo header__logo" />
         </header>
-        <main className="content">
+        <Content>
           <section className="wrapper page__section">
             <h2 className="wrapper__title">Войти</h2>
             <form className="form" action="#" method="post" noValidate autoComplete="off">
@@ -45,7 +46,7 @@ function App() {
               </button>
             </form>
           </section>
-        </main>
+        </Content>
         <footer className="footer page__section">
           <p className="footer__copyright">© 2020 Company Inc.</p>
         </footer>
