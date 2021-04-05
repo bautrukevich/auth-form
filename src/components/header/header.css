@@ -1,5 +1,3 @@
-@import url('./__logo/header__logo.css');
-
 .header {
   min-height: 120px;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -29,3 +27,18 @@
     width: calc(100% + 40px);
   }
 }
+
+.header__logo {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+}
+
+@media screen and (max-width: 480px) {
+  .header__logo {
+    width: 38px;
+    height: 38px;
+    margin: 0 0 0 7px;
+  }
+}
+

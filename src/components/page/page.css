@@ -1,6 +1,24 @@
-@import url('./__content/page__content.css');
-@import url('./__section/page__section.css');
-
 .page {
   background: #000;
+}
+
+.page__content {
+  background-color: black;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page__section {
+  width: 100%;
+  max-width: 882px;
+  box-sizing: border-box;
+  position: relative;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 1140px) {
+  .page__section {
+    width: calc(100% - 40px);
+  }
 }
