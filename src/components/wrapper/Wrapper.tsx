@@ -1,4 +1,5 @@
 import React from "react";
+import "./wrapper.css";
 
 type WrapperProps = React.PropsWithChildren<{
   title: string;

@@ -1,13 +1,7 @@
 @import-normalize; /* bring in normalize.css styles */
 @import url('./vendor/fonts.css');
-@import url('./components/page/page.css');
-@import url('./components/wrapper/wrapper.css');
-@import url('./components/header/header.css');
-@import url('./components/content/content.css');
-@import url('./components/form/form.css');
-@import url('./components/footer/footer.css');
 
-html {
+* {
   box-sizing: border-box;
 }
 
