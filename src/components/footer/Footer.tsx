@@ -2,13 +2,17 @@ import React from "react";
 import "./footer.css";
 
 type FooterProps = {
-  copyright: string;
+  companyName: string;
 };
 
-export const Footer = ({ copyright }: FooterProps) => {
+export const Footer = ({ companyName }: FooterProps) => {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="footer page__section">
-      <p className="footer__copyright">{copyright}</p>
+      <p className="footer__copyright">
+        © {currentYear} {companyName}
+      </p>
     </footer>
   );
 };
