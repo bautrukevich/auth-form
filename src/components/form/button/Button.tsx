@@ -4,11 +4,12 @@ import styles from "./button.module.css";
 
 type SubmitButtonProps = React.PropsWithChildren<{
   type: "button" | "submit" | "reset";
+  disabled?: boolean;
 }>;
 
-export const Button = ({ type, children }: SubmitButtonProps) => {
+export const Button = ({ type, disabled = false, children }: SubmitButtonProps) => {
   return (
-    <button className={styles.button} type={type}>
+    <button className={styles.button} type={type} disabled={disabled}>
       {children}
     </button>
   );
