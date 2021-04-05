@@ -1,4 +1,5 @@
 import React from "react";
+
 import styles from "./toggle-password-button.module.css";
 
 type TogglePasswordButtonProps = React.PropsWithChildren<{}>;

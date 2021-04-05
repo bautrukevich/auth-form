@@ -1,4 +1,5 @@
 import React from "react";
+
 import styles from "./label.module.css";
 
 type LabelProps = React.PropsWithChildren<{

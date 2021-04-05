@@ -1,4 +1,5 @@
 import React from "react";
+
 import styles from "./content.module.css";
 
 type ContentProps = React.PropsWithChildren<{}>;

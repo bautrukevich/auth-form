@@ -1,4 +1,5 @@
 import React from "react";
+
 import styles from "./page.module.css";
 
 type PageProps = React.PropsWithChildren<{}>;
