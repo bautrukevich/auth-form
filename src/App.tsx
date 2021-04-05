@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "./components/header/logo.svg";
 import { Content } from "./components/content/Content";
+import { Footer } from "./components/footer/Footer";
 
 function App() {
   return (
@@ -47,9 +48,7 @@ function App() {
             </form>
           </section>
         </Content>
-        <footer className="footer page__section">
-          <p className="footer__copyright">© 2020 Company Inc.</p>
-        </footer>
+        <Footer copyright="© 2020 Company Inc." />
       </div>
     </div>
   );
