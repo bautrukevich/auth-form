@@ -13,7 +13,7 @@ function App() {
       <Header companyName="Company Inc." />
       <Content>
         <Wrapper title="Войти">
-          <Form>
+          <Form onSubmit={() => {}}>
             <section className="form__section">
               <label className="form__label" htmlFor="sign-in-email">
                 E-mail
