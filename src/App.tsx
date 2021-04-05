@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "./components/header/logo.svg";
+import { Header } from "./components/header/Header";
 import { Content } from "./components/content/Content";
 import { Footer } from "./components/footer/Footer";
 
@@ -7,9 +7,7 @@ function App() {
   return (
     <div className="page">
       <div className="page__content">
-        <header className="header page__section">
-          <img src={logo} alt="Логотип проекта Company Inc." className="logo header__logo" />
-        </header>
+        <Header companyName="Company Inc." />
         <Content>
           <section className="wrapper page__section">
             <h2 className="wrapper__title">Войти</h2>
