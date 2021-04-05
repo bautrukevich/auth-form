@@ -1,6 +1,7 @@
 import React from "react";
 
 import styles from "./button.module.css";
+import clsx from "clsx";
 
 type SubmitButtonProps = React.PropsWithChildren<{
   type: "button" | "submit" | "reset";
@@ -9,7 +10,7 @@ type SubmitButtonProps = React.PropsWithChildren<{
 
 export const Button = ({ type, disabled = false, children }: SubmitButtonProps) => {
   return (
-    <button className={styles.button} type={type} disabled={disabled}>
+    <button className={clsx(styles.button, disabled && styles.button_inactive)} type={type} disabled={disabled}>
       {children}
     </button>
   );
