@@ -4,6 +4,7 @@ import { Page } from "./components/page/Page";
 import { Header } from "./components/header/Header";
 import { Content } from "./components/content/Content";
 import { Wrapper } from "./components/wrapper/Wrapper";
+import { Form } from "./components/form/Form";
 import { Footer } from "./components/footer/Footer";
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
       <Header companyName="Company Inc." />
       <Content>
         <Wrapper title="Войти">
-          <form className="form" action="#" method="post" noValidate autoComplete="off">
+          <Form>
             <section className="form__section">
               <label className="form__label" htmlFor="sign-in-email">
                 E-mail
@@ -44,7 +45,7 @@ function App() {
             <button className="form__submit" type="submit">
               Войти
             </button>
-          </form>
+          </Form>
         </Wrapper>
       </Content>
       <Footer copyright="© 2020 Company Inc." />
