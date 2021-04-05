@@ -1,0 +1,9 @@
+.page {
+  background: #000;
+}
+
+.page__content {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
