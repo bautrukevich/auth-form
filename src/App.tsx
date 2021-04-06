@@ -1,17 +1,17 @@
 import React, { FormEvent } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 
-import { Page } from "./components/page/Page";
-import { Header } from "./components/header/Header";
-import { Content } from "./components/content/Content";
-import { Wrapper } from "./components/wrapper/Wrapper";
-import { Form } from "./components/form/Form";
-import { FormSection } from "./components/form/form-section/FormSection";
-import { Label } from "./components/form/label/Label";
-import { Input } from "./components/form/input/Input";
-import { PasswordInput } from "./components/form/password-input/PasswordInput";
-import { Button } from "./components/form/button/Button";
-import { Footer } from "./components/footer/Footer";
+import { Page } from "./ui/page/Page";
+import { Header } from "./ui/header/Header";
+import { Content } from "./ui/content/Content";
+import { Wrapper } from "./ui/wrapper/Wrapper";
+import { Form } from "./ui/form/Form";
+import { FormSection } from "./ui/form/form-section/FormSection";
+import { Label } from "./ui/form/label/Label";
+import { Input } from "./ui/form/input/Input";
+import { PasswordInput } from "./ui/form/password-input/PasswordInput";
+import { Button } from "./ui/form/button/Button";
+import { Footer } from "./ui/footer/Footer";
 import { useFormWithValidation } from "./hooks/useFormWithValidation";
 
 function App() {
