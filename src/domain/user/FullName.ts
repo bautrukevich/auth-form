@@ -1,6 +1,6 @@
 export class FullNameIsEmptyError extends Error {
   constructor() {
-    super("Full name name must be not empty string.");
+    super("Full name must be not empty string.");
     this.name = "FullNameIsEmptyError";
 
     Object.setPrototypeOf(this, FullNameIsEmptyError.prototype);
