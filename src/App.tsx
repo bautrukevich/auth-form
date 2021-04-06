@@ -12,7 +12,8 @@ import { Input } from "./ui/form/input/Input";
 import { PasswordInput } from "./ui/form/password-input/PasswordInput";
 import { Button } from "./ui/form/button/Button";
 import { Footer } from "./ui/footer/Footer";
-import { useFormWithValidation } from "./hooks/useFormWithValidation";
+
+import { useFormWithValidation } from "./infrastructure/hooks/useFormWithValidation";
 
 function App() {
   const { handleChange, values, isValid, errors } = useFormWithValidation();
