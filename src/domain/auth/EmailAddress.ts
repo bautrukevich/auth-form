@@ -17,6 +17,7 @@ export class EmailAddressIsInvalid extends Error {
 }
 
 export class EmailAddress {
+  private static REG_EXP = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   private readonly emailAddress: string;
 
   private constructor(emailAddress: string) {
@@ -24,6 +25,10 @@ export class EmailAddress {
 
     if (emailAddressTrimmed === "") {
       throw new EmailAddressIsEmpty();
+    }
+
+    if (!EmailAddress.REG_EXP.test(emailAddressTrimmed)) {
+      throw new EmailAddressIsInvalid(emailAddress);
     }
 
     this.emailAddress = emailAddressTrimmed;
