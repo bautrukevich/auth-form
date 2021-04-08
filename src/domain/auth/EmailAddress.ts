@@ -38,6 +38,10 @@ export class EmailAddress {
     return new EmailAddress(emailAddress);
   }
 
+  isEqualTo(other: EmailAddress) {
+    return this.emailAddress === other.emailAddress;
+  }
+
   asString(): string {
     return this.emailAddress;
   }

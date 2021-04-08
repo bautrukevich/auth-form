@@ -24,6 +24,10 @@ export class Password {
     return new Password(password);
   }
 
+  isEqualTo(other: Password) {
+    return this.password === other.password;
+  }
+
   asString(): string {
     return this.password;
   }
