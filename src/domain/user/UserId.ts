@@ -1,9 +1,9 @@
-export class UserIdIsEmptyError extends Error {
+export class UserIdIsEmpty extends Error {
   constructor() {
     super("User id must be not empty string.");
-    this.name = "UserIdIsEmptyError";
+    this.name = "UserIdIsEmpty";
 
-    Object.setPrototypeOf(this, UserIdIsEmptyError.prototype);
+    Object.setPrototypeOf(this, UserIdIsEmpty.prototype);
   }
 }
 
@@ -14,7 +14,7 @@ export class UserId {
     const idTrimmed = id.trim();
 
     if (idTrimmed === "") {
-      throw new UserIdIsEmptyError();
+      throw new UserIdIsEmpty();
     }
     this.id = idTrimmed;
   }
