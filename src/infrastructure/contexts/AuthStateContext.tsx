@@ -101,10 +101,10 @@ export const AuthStateProvider = ({ children }: PropsWithChildren<{}>) => {
 
     try {
       // After restoring token, we may need to validate it
-      const command = RestoreToken.Query.create({ authStateKey: SECURE_AUTH_STATE_KEY });
+      const query = RestoreToken.Query.create({ authStateKey: SECURE_AUTH_STATE_KEY });
       const handler = new RestoreToken.Handler({ auth, storage });
 
-      const accessToken = await handler.handle(command);
+      const accessToken = await handler.handle(query);
 
       if (accessToken !== null) {
         dispatch({
