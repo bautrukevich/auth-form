@@ -1,18 +1,16 @@
 import { SecureStorage, Storable } from "../application/SecureStorage";
 
 export class LocalSecureStorage<UKey extends Storable, TValue extends Storable> implements SecureStorage<UKey, TValue> {
-  private readonly _storage;
   private readonly _valueFactory;
 
-  constructor(storage: Storage, valueFactory: (value: string) => TValue) {
-    this._storage = storage;
+  constructor(valueFactory: (value: string) => TValue) {
     this._valueFactory = valueFactory;
   }
 
   getItem(key: UKey): Promise<TValue | null> {
     return new Promise<TValue | null>((resolve, reject) => {
       try {
-        const data = this._storage.getItem(key.asString());
+        const data = localStorage.getItem(key.asString());
 
         if (data !== null) {
           const storable = this._valueFactory(data);
@@ -30,7 +28,7 @@ export class LocalSecureStorage<UKey extends Storable, TValue extends Storable> 
   removeItem(key: UKey): Promise<void> {
     return new Promise<void>((resolve, reject) => {
       try {
-        this._storage.removeItem(key.asString());
+        localStorage.removeItem(key.asString());
         resolve();
       } catch (e) {
         reject(e);
@@ -41,7 +39,7 @@ export class LocalSecureStorage<UKey extends Storable, TValue extends Storable> 
   setItem(key: UKey, value: TValue): Promise<void> {
     return new Promise<void>((resolve, reject) => {
       try {
-        this._storage.setItem(key.asString(), value.asString());
+        localStorage.setItem(key.asString(), value.asString());
         resolve();
       } catch (e) {
         reject(e);
