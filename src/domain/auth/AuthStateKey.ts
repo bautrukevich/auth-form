@@ -1,3 +1,5 @@
+import { Storable } from "../../application/SecureStorage";
+
 export class AuthStateKeyIsEmpty extends Error {
   constructor() {
     super("Auth state key must be not empty string.");
@@ -7,7 +9,7 @@ export class AuthStateKeyIsEmpty extends Error {
   }
 }
 
-export class AuthStateKey {
+export class AuthStateKey implements Storable {
   private readonly key: string;
 
   private constructor(key: string) {
