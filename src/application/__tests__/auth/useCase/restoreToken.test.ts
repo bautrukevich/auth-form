@@ -10,6 +10,7 @@ describe("restoreToken", () => {
   it("should be able to restore access token", async () => {
     const auth = new FakeAuth();
     const storage = new CookiesSecureStorage<AuthStateKey, AccessToken>(AccessToken.fromString);
+
     const query = RestoreToken.Query.create({ authStateKey: SECURE_AUTH_STATE_KEY });
     const handler = new RestoreToken.Handler({ auth, storage });
 
