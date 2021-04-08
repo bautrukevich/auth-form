@@ -21,9 +21,9 @@ export class Command {
 
 export class Handler {
   private readonly auth: Auth;
-  private readonly storage: SecureStorage<AccessToken>;
+  private readonly storage: SecureStorage<AuthStateKey, AccessToken>;
 
-  constructor({ auth, storage }: { auth: Auth; storage: SecureStorage<AccessToken> }) {
+  constructor({ auth, storage }: { auth: Auth; storage: SecureStorage<AuthStateKey, AccessToken> }) {
     this.auth = auth;
     this.storage = storage;
   }
@@ -31,7 +31,7 @@ export class Handler {
   async handle(command: Command): Promise<void> {
     await this.auth.logout();
 
-    const authStateKey = command.authStateKey.asString();
+    const authStateKey = command.authStateKey;
 
     await this.storage.removeItem(authStateKey);
   }

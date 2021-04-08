@@ -35,16 +35,16 @@ export class Query {
 
 export class Handler {
   private readonly auth: Auth;
-  private readonly storage: SecureStorage<AccessToken>;
+  private readonly storage: SecureStorage<AuthStateKey, AccessToken>;
 
-  constructor({ auth, storage }: { auth: Auth; storage: SecureStorage<AccessToken> }) {
+  constructor({ auth, storage }: { auth: Auth; storage: SecureStorage<AuthStateKey, AccessToken> }) {
     this.auth = auth;
     this.storage = storage;
   }
 
   async handle(query: Query): Promise<AccessToken> {
     const accessToken = await this.auth.login(query.email, query.password);
-    const authStateKey = query.authStateKey.asString();
+    const authStateKey = query.authStateKey;
 
     await this.storage.setItem(authStateKey, accessToken);
 
