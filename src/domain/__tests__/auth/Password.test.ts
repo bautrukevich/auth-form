@@ -11,4 +11,10 @@ describe("Password", () => {
 
     expect(password.asString()).toBe("$ecure_pa$$word");
   });
+  it("should be equal to other password", () => {
+    const password = Password.fromString("$ecure_pa$$word");
+    const otherPassword = Password.fromString("$ecure_pa$$word");
+
+    expect(password.isEqualTo(otherPassword)).toBeTruthy();
+  });
 });

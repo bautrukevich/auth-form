@@ -11,4 +11,10 @@ describe("AccessToken", () => {
 
     expect(accessToken.asString()).toBe("secure_token");
   });
+  it("should be equal to other access token", () => {
+    const accessToken = AccessToken.fromString("secure_token");
+    const otherAccessToken = AccessToken.fromString("secure_token");
+
+    expect(accessToken.isEqualTo(otherAccessToken)).toBeTruthy();
+  });
 });

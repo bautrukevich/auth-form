@@ -25,4 +25,10 @@ describe("EmailAddress", () => {
 
     expect(emailAddress.asString()).toBe("e@mail.tld");
   });
+  it("should be equal to other email address", () => {
+    const emailAddress = EmailAddress.fromString("e@mail.tld");
+    const otherEmailAddress = EmailAddress.fromString("e@mail.tld");
+
+    expect(emailAddress.isEqualTo(otherEmailAddress)).toBeTruthy();
+  });
 });
