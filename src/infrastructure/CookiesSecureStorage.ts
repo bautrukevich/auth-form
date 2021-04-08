@@ -3,9 +3,13 @@ import Cookies from "js-cookie";
 
 export class CookiesSecureStorage<UKey extends Storable, TValue extends Storable>
   implements SecureStorage<UKey, TValue> {
+  private static readonly EXPIRES_IN_1_HOUR = 1 / 24;
   private readonly _valueFactory;
 
-  constructor(valueFactory: (value: string) => TValue, defaults = {}) {
+  constructor(
+    valueFactory: (value: string) => TValue,
+    defaults = { expires: CookiesSecureStorage.EXPIRES_IN_1_HOUR, secure: false }
+  ) {
     this._valueFactory = valueFactory;
     Cookies.defaults = defaults;
   }
