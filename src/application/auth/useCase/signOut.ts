@@ -32,6 +32,7 @@ export class Handler {
     await this.auth.logout();
 
     const authStateKey = command.authStateKey.asString();
+
     await this.storage.removeItem(authStateKey);
   }
 }
