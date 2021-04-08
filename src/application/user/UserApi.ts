@@ -1,5 +1,5 @@
-import { User } from "../domain/user/User";
-import { FullName } from "../domain/user/FullName";
+import { User } from "../../domain/user/User";
+import { FullName } from "../../domain/user/FullName";
 
 export interface UserApi {
   getUserInfo(): Promise<User>;
