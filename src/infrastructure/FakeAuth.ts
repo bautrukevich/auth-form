@@ -3,11 +3,20 @@ import { AccessToken } from "../domain/auth/AccessToken";
 import { Password } from "../domain/auth/Password";
 import { EmailAddress } from "../domain/auth/EmailAddress";
 
+export class AuthInvalidCredentials extends Error {
+  constructor() {
+    super("Invalid credentials.");
+    this.name = "AuthInvalidCredentials";
+
+    Object.setPrototypeOf(this, AuthInvalidCredentials.prototype);
+  }
+}
+
 export class FakeAuth implements Auth {
   private static readonly SECRET_TOKEN = AccessToken.fromString("secret_token");
 
-  private static readonly SECRET_EMAIL = EmailAddress.fromString("my@email.com");
-  private static readonly SECRET_PASSWORD = Password.fromString("my@email.com");
+  private static readonly SECRET_EMAIL = EmailAddress.fromString("valid@email.com");
+  private static readonly SECRET_PASSWORD = Password.fromString("secret_password");
 
   checkToken(token: AccessToken): Promise<boolean> {
     return new Promise<boolean>((resolve) => {
@@ -24,7 +33,7 @@ export class FakeAuth implements Auth {
         resolve(FakeAuth.SECRET_TOKEN);
       }
 
-      reject();
+      reject(new AuthInvalidCredentials());
     });
   }
   logout(): Promise<void> {
