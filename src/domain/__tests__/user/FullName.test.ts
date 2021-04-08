@@ -1,10 +1,10 @@
-import { FullName, FullNameIsEmptyError } from "../../user/FullName";
+import { FullName, FullNameIsEmpty } from "../../user/FullName";
 
 describe("FullName", () => {
   it("should throw an error when full name is empty string", () => {
     expect(() => {
       FullName.fromString(" ");
-    }).toThrowError(FullNameIsEmptyError);
+    }).toThrowError(FullNameIsEmpty);
   });
   it("should have the full name trimmed", () => {
     const fullName = FullName.fromString(" John Doe ");

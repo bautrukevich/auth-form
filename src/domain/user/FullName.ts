@@ -1,9 +1,9 @@
-export class FullNameIsEmptyError extends Error {
+export class FullNameIsEmpty extends Error {
   constructor() {
     super("Full name must be not empty string.");
-    this.name = "FullNameIsEmptyError";
+    this.name = "FullNameIsEmpty";
 
-    Object.setPrototypeOf(this, FullNameIsEmptyError.prototype);
+    Object.setPrototypeOf(this, FullNameIsEmpty.prototype);
   }
 }
 
@@ -14,7 +14,7 @@ export class FullName {
     const fullNameTrimmed = fullName.trim();
 
     if (fullNameTrimmed === "") {
-      throw new FullNameIsEmptyError();
+      throw new FullNameIsEmpty();
     }
 
     this.fullName = fullNameTrimmed;
