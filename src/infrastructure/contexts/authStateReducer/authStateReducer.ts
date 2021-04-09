@@ -1,11 +1,12 @@
 import { Reducer } from "react";
 import { AuthState } from "../AuthStateContext";
 import { AccessToken } from "../../../domain/auth/AccessToken";
+import { User } from "../../../domain/user/User";
 
 export enum AuthActionType {
   SIGN_IN,
   SIGN_OUT,
-  RESTORE_TOKEN,
+  RESTORE_SESSION,
   SHOW_LOADER,
   HIDE_LOADER,
   SHOW_ERROR,
@@ -23,9 +24,10 @@ type AuthAction =
       type: AuthActionType.SIGN_OUT;
     }
   | {
-      type: AuthActionType.RESTORE_TOKEN;
+      type: AuthActionType.RESTORE_SESSION;
       payload: {
         accessToken: AccessToken;
+        user: User;
       };
     }
   | {
@@ -63,10 +65,12 @@ const restoreToken = (
   prevState: AuthState,
   payload: {
     accessToken: AccessToken;
+    user: User;
   }
 ): AuthState => ({
   ...prevState,
   accessToken: payload.accessToken.asString(),
+  user: payload.user,
   isLoading: false,
   isLoggedIn: true,
 });
@@ -89,8 +93,8 @@ export const authStateReducer: Reducer<AuthState, AuthAction> = (
       return signIn(prevState, { accessToken: action.payload.accessToken });
     case AuthActionType.SIGN_OUT:
       return signOut(prevState);
-    case AuthActionType.RESTORE_TOKEN:
-      return restoreToken(prevState, { accessToken: action.payload.accessToken });
+    case AuthActionType.RESTORE_SESSION:
+      return restoreToken(prevState, { accessToken: action.payload.accessToken, user: action.payload.user });
     case AuthActionType.SHOW_LOADER:
       return showLoader(prevState);
     case AuthActionType.HIDE_LOADER:

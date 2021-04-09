@@ -16,5 +16,6 @@ export const NEW_FULL_NAME = "Jane Doe";
 export const userFactory = () =>
   User.fromJson({
     id: "unique_id",
+    emailAddress: "valid@email.com",
     fullName: "John Doe",
   });

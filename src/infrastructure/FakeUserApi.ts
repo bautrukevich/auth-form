@@ -26,6 +26,7 @@ export class FakeUserApi implements UserApi {
       if (this._token.isEqualTo(FakeUserApi.SECRET_TOKEN)) {
         const user = User.fromJson({
           id: "unique_id",
+          emailAddress: "valid@email.com",
           fullName: "John Doe",
         });
 

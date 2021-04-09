@@ -11,12 +11,16 @@ import { CookiesSecureStorage } from "../CookiesSecureStorage";
 import * as SignInWithEmailAndPassword from "../../application/auth/useCase/signInWithEmailAndPassword";
 import * as SignOut from "../../application/auth/useCase/signOut";
 import * as RestoreToken from "../../application/auth/useCase/restoreToken";
+import * as GetUserInfo from "../../application/user/useCase/getUserInfo";
+import { User } from "../../domain/user/User";
+import { FakeUserApi } from "../FakeUserApi";
 
 export interface AuthState {
   isLoading: boolean;
   isLoggedIn: boolean;
   hasError: string | false;
   accessToken: string | null;
+  user: User | null;
 }
 
 export const SECURE_AUTH_STATE_KEY = "access_token";
@@ -37,6 +41,7 @@ const initialState: AuthState = {
   isLoggedIn: false,
   hasError: false,
   accessToken: null,
+  user: null,
 };
 
 const AuthStateContext = createContext<AuthStateContextProps>({} as AuthStateContextProps);
@@ -107,10 +112,16 @@ export const AuthStateProvider = ({ children }: PropsWithChildren<{}>) => {
       const accessToken = await handler.handle(query);
 
       if (accessToken !== null) {
+        const userApi = new FakeUserApi(accessToken);
+        const handler = new GetUserInfo.Handler({ userApi });
+
+        const user = await handler.handle();
+
         dispatch({
-          type: AuthActionType.RESTORE_TOKEN,
+          type: AuthActionType.RESTORE_SESSION,
           payload: {
             accessToken,
+            user,
           },
         });
       } else {
