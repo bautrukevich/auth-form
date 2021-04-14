@@ -18,7 +18,7 @@ import { useAuthState } from "./infrastructure/contexts/AuthStateContext";
 
 function App() {
   const history = useHistory();
-  const { isLoggedIn, signInWithEmailAndPassword, hasError, restoreToken, signOut } = useAuthState();
+  const { isLoggedIn, signInWithEmailAndPassword, restoreToken, signOut } = useAuthState();
   const { handleChange, values, isValid, errors } = useFormWithValidation();
   const isDisabled = !isValid;
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -30,6 +30,7 @@ function App() {
     (async () => {
       await restoreToken();
     })();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
