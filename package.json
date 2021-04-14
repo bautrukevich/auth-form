@@ -1,5 +1,5 @@
 {
-  "name": "evilmartians",
+  "name": "authform",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -11,6 +11,7 @@
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
     "clsx": "^1.1.1",
+    "js-cookie": "^2.2.1",
     "lint-staged": "^10.5.4",
     "prettier": "^2.2.1",
     "react": "^17.0.2",
@@ -54,6 +55,7 @@
     ]
   },
   "devDependencies": {
+    "@types/js-cookie": "^2.2.6",
     "@types/react-router-dom": "^5.1.7"
   }
 }

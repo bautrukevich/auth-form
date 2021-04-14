@@ -1,28 +1,42 @@
-import React, { FormEvent } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import React, { FormEvent, useEffect } from "react";
+import { Route, Switch, Redirect, useHistory } from "react-router-dom";
 
-import { Page } from "./components/page/Page";
-import { Header } from "./components/header/Header";
-import { Content } from "./components/content/Content";
-import { Wrapper } from "./components/wrapper/Wrapper";
-import { Form } from "./components/form/Form";
-import { FormSection } from "./components/form/form-section/FormSection";
-import { Label } from "./components/form/label/Label";
-import { Input } from "./components/form/input/Input";
-import { PasswordInput } from "./components/form/password-input/PasswordInput";
-import { Button } from "./components/form/button/Button";
-import { Footer } from "./components/footer/Footer";
-import { useFormWithValidation } from "./hooks/useFormWithValidation";
+import { Page } from "./ui/page/Page";
+import { Header } from "./ui/header/Header";
+import { Content } from "./ui/content/Content";
+import { Wrapper } from "./ui/wrapper/Wrapper";
+import { Form } from "./ui/form/Form";
+import { FormSection } from "./ui/form/form-section/FormSection";
+import { Label } from "./ui/form/label/Label";
+import { Input } from "./ui/form/input/Input";
+import { PasswordInput } from "./ui/form/password-input/PasswordInput";
+import { Button } from "./ui/form/button/Button";
+import { Footer } from "./ui/footer/Footer";
+
+import { useFormWithValidation } from "./infrastructure/hooks/useFormWithValidation";
+import { useAuthState } from "./infrastructure/contexts/AuthStateContext";
 
 function App() {
+  const history = useHistory();
+  const { isLoggedIn, signInWithEmailAndPassword, hasError, restoreToken, signOut } = useAuthState();
   const { handleChange, values, isValid, errors } = useFormWithValidation();
   const isDisabled = !isValid;
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(values, isValid, errors);
+    await signInWithEmailAndPassword(values["email"], values["password"]);
   };
 
-  const isLoggedIn = false;
+  useEffect(() => {
+    (async () => {
+      await restoreToken();
+    })();
+  }, []);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      history.push("/");
+    }
+  }, [history, isLoggedIn]);
 
   return (
     <Page>
@@ -30,7 +44,15 @@ function App() {
       <Content>
         <Switch>
           <Route exact path="/">
-            {() => (isLoggedIn ? <Wrapper title="Добро пожаловать" /> : <Redirect to="/accounts/login" />)}
+            {() =>
+              isLoggedIn ? (
+                <Wrapper title="Добро пожаловать">
+                  <Button onClick={signOut}>Выйти</Button>
+                </Wrapper>
+              ) : (
+                <Redirect to="/accounts/login" />
+              )
+            }
           </Route>
           <Route exact path="/accounts/login">
             <Wrapper title="Войти">
