@@ -53,6 +53,11 @@ function App() {
         {() =>
           isLoggedIn ? (
             <Container isWide>
+              {hasError && (
+                <ErrorWrapper>
+                  <ErrorText>{hasError}</ErrorText>
+                </ErrorWrapper>
+              )}
               <Header companyName="Company, Inc." title={`Привет, ${user?.fullName}!`} />
               <UserInfo>
                 <UserInfoRow name="Имя" value={user?.fullName} />

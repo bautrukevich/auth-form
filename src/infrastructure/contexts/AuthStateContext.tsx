@@ -72,12 +72,20 @@ export const AuthStateProvider = ({ children }: PropsWithChildren<{}>) => {
       const handler = new SignInWithEmailAndPassword.Handler({ auth, storage });
       const accessToken = await handler.handle(query);
 
-      dispatch({
-        type: AuthActionType.SIGN_IN,
-        payload: {
-          accessToken,
-        },
-      });
+      if (accessToken !== null) {
+        const userApi = new FakeUserApi(accessToken);
+        const handler = new GetUserInfo.Handler({ userApi });
+
+        const user = await handler.handle();
+
+        dispatch({
+          type: AuthActionType.RESTORE_SESSION,
+          payload: {
+            accessToken,
+            user,
+          },
+        });
+      }
     } catch (e) {
       showError(e.message);
     } finally {
