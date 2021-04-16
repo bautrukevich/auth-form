@@ -72,7 +72,7 @@ function App() {
       </Route>
       <Route exact path="/accounts/login">
         <Container>
-          <Header companyName="Company, Inc." title="Glat to see you!" />
+          <Header companyName="Company, Inc." title="Glad to see you!" />
           {hasError && (
             <ErrorWrapper>
               <ErrorText>{hasError}</ErrorText>
