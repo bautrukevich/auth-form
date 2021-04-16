@@ -12,7 +12,7 @@ Deployed using Netlify.
 
 ## How it looks like
 
-You can see how it looks like [here](https://vibrant-albattani-1ba3cf.netlify.app).
+You can see how it looks like <a href="https://vibrant-albattani-1ba3cf.netlify.app" target="_blank">here</a>.
 
 ## How to sign in
 
