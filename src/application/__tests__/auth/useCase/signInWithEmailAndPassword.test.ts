@@ -1,6 +1,6 @@
 import * as SignInWithEmailAndPassword from "../../../auth/useCase/signInWithEmailAndPassword";
 import { SECURE_AUTH_STATE_KEY } from "../../../../infrastructure/contexts/AuthStateContext";
-import { SECRET_EMAIL, SECRET_PASSWORD, SECRET_TOKEN } from "../../../../infrastructure/__tests__/data";
+import { SECRET_EMAIL, SECRET_PASSWORD, SECRET_TOKEN } from "../../../../infrastructure/data";
 import { FakeAuth } from "../../../../infrastructure/FakeAuth";
 import { CookiesSecureStorage } from "../../../../infrastructure/CookiesSecureStorage";
 import { AuthStateKey } from "../../../../domain/auth/AuthStateKey";

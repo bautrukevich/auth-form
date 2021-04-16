@@ -1,4 +1,4 @@
-import { User } from "../../domain/user/User";
+import { User } from "../domain/user/User";
 
 export const SECURE_AUTH_STATE_KEY = "access_token";
 

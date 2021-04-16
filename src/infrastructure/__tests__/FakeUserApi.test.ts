@@ -1,7 +1,7 @@
 import { FakeUserApi, UserApiInvalidToken } from "../FakeUserApi";
 import { AccessToken } from "../../domain/auth/AccessToken";
 import { FullName } from "../../domain/user/FullName";
-import { INVALID_SECRET_TOKEN, NEW_FULL_NAME, SECRET_TOKEN, userFactory } from "./data";
+import { INVALID_SECRET_TOKEN, NEW_FULL_NAME, SECRET_TOKEN, userFactory } from "../data";
 
 describe("FakeUserApi", () => {
   it("should be able to get user info with valid token", async () => {

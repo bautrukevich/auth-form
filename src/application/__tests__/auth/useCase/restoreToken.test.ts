@@ -4,7 +4,7 @@ import { FakeAuth } from "../../../../infrastructure/FakeAuth";
 import { CookiesSecureStorage } from "../../../../infrastructure/CookiesSecureStorage";
 import { AuthStateKey } from "../../../../domain/auth/AuthStateKey";
 import { AccessToken } from "../../../../domain/auth/AccessToken";
-import { SECRET_TOKEN } from "../../../../infrastructure/__tests__/data";
+import { SECRET_TOKEN } from "../../../../infrastructure/data";
 
 describe("restoreToken", () => {
   it("should be able to restore access token", async () => {

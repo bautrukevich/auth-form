@@ -9,7 +9,7 @@ import {
   SECRET_EMAIL,
   SECRET_PASSWORD,
   SECRET_TOKEN,
-} from "./data";
+} from "../data";
 
 describe("FakeAuth", () => {
   it("should be able to check token and be truthy", async () => {
