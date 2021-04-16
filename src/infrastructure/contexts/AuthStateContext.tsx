@@ -79,7 +79,7 @@ export const AuthStateProvider = ({ children }: PropsWithChildren<{}>) => {
         },
       });
     } catch (e) {
-      showError(e);
+      showError(e.message);
     } finally {
       hideLoader();
     }
@@ -95,7 +95,7 @@ export const AuthStateProvider = ({ children }: PropsWithChildren<{}>) => {
 
       dispatch({ type: AuthActionType.SIGN_OUT });
     } catch (e) {
-      showError(e);
+      showError(e.message);
     } finally {
       hideLoader();
     }
@@ -132,7 +132,7 @@ export const AuthStateProvider = ({ children }: PropsWithChildren<{}>) => {
       }
     } catch (e) {
       // Restoring token failed
-      showError(e);
+      showError(e.message);
     } finally {
       hideLoader();
     }

@@ -1,0 +1,11 @@
+.error-text {
+  font-size: 14px;
+  line-height: 1;
+  color: #FF3055;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.error-text_active {
+  opacity: 1;
+}
