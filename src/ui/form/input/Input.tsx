@@ -1,7 +1,7 @@
 import React, { ChangeEventHandler, InputHTMLAttributes } from "react";
-import clsx from "clsx";
-
 import styles from "./input.module.css";
+
+import { ErrorText } from "../error-text/ErrorText";
 
 type InputProps = {
   name: string;
@@ -14,7 +14,7 @@ export const Input = ({ name, type = "text", onChange, error, ...rest }: InputPr
   return (
     <>
       <input className={styles.input} type={type} name={name} onChange={onChange} {...rest} />
-      {error && <span className={clsx(styles["input-error"], styles["input-error_active"])}>{error}</span>}
+      {error && <ErrorText>{error}</ErrorText>}
     </>
   );
 };

@@ -9,21 +9,27 @@ import { Label } from "./ui/form/label/Label";
 import { Input } from "./ui/form/input/Input";
 import { PasswordInput } from "./ui/form/password-input/PasswordInput";
 import { Button } from "./ui/form/button/Button";
+import { UserInfo } from "./ui/user-info/UserInfo";
+import { UserInfoRow } from "./ui/user-info/user-info-row/UserInfoRow";
+import { ErrorText } from "./ui/form/error-text/ErrorText";
+import { ErrorWrapper } from "./ui/form/error-wrapper/ErrorWrapper";
 
 import { useFormWithValidation } from "./infrastructure/hooks/useFormWithValidation";
 import { useAuthState } from "./infrastructure/contexts/AuthStateContext";
-import { UserInfo } from "./ui/user-info/UserInfo";
-import { UserInfoRow } from "./ui/user-info/user-info-row/UserInfoRow";
 
 function App() {
   const history = useHistory();
-  const { isLoggedIn, signInWithEmailAndPassword, restoreToken, user, signOut } = useAuthState();
+  const { isLoggedIn, hasError, signInWithEmailAndPassword, restoreToken, user, signOut } = useAuthState();
   const { handleChange, values, isValid, errors } = useFormWithValidation();
   const isDisabled = !isValid;
   const handleSubmit = useCallback(
     async (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      await signInWithEmailAndPassword(values["email"], values["password"]);
+      try {
+        await signInWithEmailAndPassword(values["email"], values["password"]);
+      } catch (e) {
+        console.log(e);
+      }
     },
     [signInWithEmailAndPassword, values]
   );
@@ -62,6 +68,11 @@ function App() {
       <Route exact path="/accounts/login">
         <Container>
           <Header companyName="Company, Inc." title="Рады видеть!" />
+          {hasError && (
+            <ErrorWrapper>
+              <ErrorText>{hasError}</ErrorText>
+            </ErrorWrapper>
+          )}
           <Form onSubmit={handleSubmit}>
             <FormSection>
               <Label text="E-mail">

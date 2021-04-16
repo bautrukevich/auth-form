@@ -33,15 +33,3 @@
   cursor: not-allowed;
   border: 1px dashed var(--color-warm-grey);
 }
-
-.input-error {
-  font-size: 12px;
-  line-height: 1;
-  color: #FF3055;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.input-error_active {
-  opacity: 1;
-}
