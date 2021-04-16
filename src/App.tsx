@@ -25,11 +25,7 @@ function App() {
   const handleSubmit = useCallback(
     async (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      try {
-        await signInWithEmailAndPassword(values["email"], values["password"]);
-      } catch (e) {
-        console.log(e);
-      }
+      await signInWithEmailAndPassword(values["email"], values["password"]);
     },
     [signInWithEmailAndPassword, values]
   );
