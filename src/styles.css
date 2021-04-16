@@ -1,0 +1,51 @@
+@import-normalize; /* bring in normalize.css styles */
+@import url('./vendor/fonts.css');
+
+:root {
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-size: 16px;
+  --line-height: 24px;
+
+  /* Colors */
+  --color-dark: #191919;
+  --color-darken-grey: #363636;
+  --color-dark-grey: #404040;
+  --color-grey: #7b7b7b;
+  --color-warm-grey: #c5c4be;
+  --color-light-grey: #e7e7e7;
+  --color-lighten-grey: #f0f0f0;
+  --color-lighten: #f6f6f6;
+  --color-brand: #fae800;
+  --color-dark-blue: #187cce;
+  --color-blue: #238de6;
+  --color-light-blue: #52b0ff;
+  --color-purple: #b375d4;
+  --color-light-purple: #d589ff;
+
+  --color-outline: var(--color-light-blue);
+}
+
+*, html {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  min-height: max-content;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  height: 100%;
+}

@@ -30,6 +30,7 @@ interface AuthStateContextProps {
   isLoggedIn: boolean;
   hasError: string | false;
   accessToken: string | null;
+  user: User | null;
 
   signInWithEmailAndPassword(email: string, password: string): Promise<void>;
   signOut(): Promise<void>;
@@ -151,6 +152,7 @@ export const AuthStateProvider = ({ children }: PropsWithChildren<{}>) => {
         isLoggedIn: state.isLoggedIn,
         hasError: state.hasError,
         accessToken: state.accessToken,
+        user: state.user,
         signInWithEmailAndPassword,
         signOut,
         restoreToken,

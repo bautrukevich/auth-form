@@ -1,30 +1,32 @@
-import React, { FormEvent, useEffect } from "react";
+import React, { FormEvent, useCallback, useEffect } from "react";
 import { Route, Switch, Redirect, useHistory } from "react-router-dom";
 
-import { Page } from "./ui/page/Page";
+import { Container } from "./ui/container/Container";
 import { Header } from "./ui/header/Header";
-import { Content } from "./ui/content/Content";
-import { Wrapper } from "./ui/wrapper/Wrapper";
 import { Form } from "./ui/form/Form";
 import { FormSection } from "./ui/form/form-section/FormSection";
 import { Label } from "./ui/form/label/Label";
 import { Input } from "./ui/form/input/Input";
 import { PasswordInput } from "./ui/form/password-input/PasswordInput";
 import { Button } from "./ui/form/button/Button";
-import { Footer } from "./ui/footer/Footer";
 
 import { useFormWithValidation } from "./infrastructure/hooks/useFormWithValidation";
 import { useAuthState } from "./infrastructure/contexts/AuthStateContext";
+import { UserInfo } from "./ui/user-info/UserInfo";
+import { UserInfoRow } from "./ui/user-info/user-info-row/UserInfoRow";
 
 function App() {
   const history = useHistory();
-  const { isLoggedIn, signInWithEmailAndPassword, restoreToken, signOut } = useAuthState();
+  const { isLoggedIn, signInWithEmailAndPassword, restoreToken, user, signOut } = useAuthState();
   const { handleChange, values, isValid, errors } = useFormWithValidation();
   const isDisabled = !isValid;
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    await signInWithEmailAndPassword(values["email"], values["password"]);
-  };
+  const handleSubmit = useCallback(
+    async (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      await signInWithEmailAndPassword(values["email"], values["password"]);
+    },
+    [signInWithEmailAndPassword, values]
+  );
 
   useEffect(() => {
     (async () => {
@@ -40,50 +42,58 @@ function App() {
   }, [history, isLoggedIn]);
 
   return (
-    <Page>
-      <Header companyName="Company Inc." />
-      <Content>
-        <Switch>
-          <Route exact path="/">
-            {() =>
-              isLoggedIn ? (
-                <Wrapper title="Добро пожаловать">
-                  <Button onClick={signOut}>Выйти</Button>
-                </Wrapper>
-              ) : (
-                <Redirect to="/accounts/login" />
-              )
-            }
-          </Route>
-          <Route exact path="/accounts/login">
-            <Wrapper title="Войти">
-              <Form onSubmit={handleSubmit}>
-                <FormSection>
-                  <Label text="E-mail">
-                    <Input type="email" name="email" onChange={handleChange} error={errors["email"]} required />
-                  </Label>
-                </FormSection>
-                <FormSection>
-                  <Label text="Пароль">
-                    <PasswordInput
-                      name="password"
-                      onChange={handleChange}
-                      error={errors["password"]}
-                      required
-                      minLength={8}
-                    />
-                  </Label>
-                </FormSection>
-                <Button type="submit" disabled={isDisabled}>
-                  Войти
-                </Button>
-              </Form>
-            </Wrapper>
-          </Route>
-        </Switch>
-      </Content>
-      <Footer companyName="Company Inc." />
-    </Page>
+    <Switch>
+      <Route exact path="/">
+        {() =>
+          isLoggedIn ? (
+            <Container isWide>
+              <Header companyName="Company, Inc." title={`Привет, ${user?.fullName}!`} />
+              <UserInfo>
+                <UserInfoRow name="Имя" value={user?.fullName} />
+                <UserInfoRow name="Почта" value={user?.emailAddress} />
+              </UserInfo>
+              <Button onClick={signOut}>Выйти из аккаунта</Button>
+            </Container>
+          ) : (
+            <Redirect to="/accounts/login" />
+          )
+        }
+      </Route>
+      <Route exact path="/accounts/login">
+        <Container>
+          <Header companyName="Company, Inc." title="Рады видеть!" />
+          <Form onSubmit={handleSubmit}>
+            <FormSection>
+              <Label text="E-mail">
+                <Input
+                  type="email"
+                  name="email"
+                  onChange={handleChange}
+                  error={errors["email"]}
+                  placeholder="your@email.com"
+                  required
+                />
+              </Label>
+            </FormSection>
+            <FormSection>
+              <Label text="Пароль">
+                <PasswordInput
+                  name="password"
+                  onChange={handleChange}
+                  error={errors["password"]}
+                  placeholder="········"
+                  required
+                  minLength={8}
+                />
+              </Label>
+            </FormSection>
+            <Button type="submit" disabled={isDisabled}>
+              Войти
+            </Button>
+          </Form>
+        </Container>
+      </Route>
+    </Switch>
   );
 }
 

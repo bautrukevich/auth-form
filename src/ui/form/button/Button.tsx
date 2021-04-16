@@ -13,7 +13,7 @@ export const Button = ({ type = "button", disabled = false, onClick, children }:
   return (
     <button
       onClick={onClick}
-      className={clsx(styles.button, disabled && styles.button_inactive)}
+      className={clsx(styles.button, styles.button_color_primary, disabled && styles.button_inactive)}
       type={type}
       disabled={disabled}
     >

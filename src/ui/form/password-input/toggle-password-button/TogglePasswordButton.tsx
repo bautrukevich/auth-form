@@ -2,12 +2,15 @@ import React from "react";
 
 import styles from "./toggle-password-button.module.css";
 
-type TogglePasswordButtonProps = React.PropsWithChildren<{}>;
+type TogglePasswordButtonProps = React.PropsWithChildren<{
+  onClick: () => void;
+}>;
 
-export const TogglePasswordButton = ({ children }: TogglePasswordButtonProps) => {
+export const TogglePasswordButton = ({ onClick, children }: TogglePasswordButtonProps) => {
   return (
     <button
-      className={styles["form__toggle-password"]}
+      onClick={onClick}
+      className={styles["toggle-password-button"]}
       type="button"
       aria-label="Показать пароль как простой текст. Предупреждение: это покажет ваш пароль на экране."
     >
