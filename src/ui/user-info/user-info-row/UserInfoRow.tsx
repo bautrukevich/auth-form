@@ -1,3 +1,5 @@
+import React from "react";
+
 import styles from "./user-info-row.module.css";
 
 type UserInfoRowProps = {
