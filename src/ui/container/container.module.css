@@ -1,0 +1,21 @@
+.container {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  margin: 0 auto;
+  height: 100%;
+  width: 100%;
+  max-width: 410px;
+}
+
+.container_wide {
+  max-width: 480px;
+}
+
+@media (min-width: 480px) {
+  .container {
+    padding: 32px;
+  }
+}
