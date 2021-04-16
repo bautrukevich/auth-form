@@ -58,12 +58,12 @@ function App() {
                   <ErrorText>{hasError}</ErrorText>
                 </ErrorWrapper>
               )}
-              <Header companyName="Company, Inc." title={`Привет, ${user?.fullName}!`} />
+              <Header companyName="Company, Inc." title={`Hello, ${user?.fullName}!`} />
               <UserInfo>
-                <UserInfoRow name="Имя" value={user?.fullName} />
-                <UserInfoRow name="Почта" value={user?.emailAddress} />
+                <UserInfoRow name="Name" value={user?.fullName} />
+                <UserInfoRow name="E-mail" value={user?.emailAddress} />
               </UserInfo>
-              <Button onClick={signOut}>Выйти из аккаунта</Button>
+              <Button onClick={signOut}>Sign out</Button>
             </Container>
           ) : (
             <Redirect to="/accounts/login" />
@@ -72,7 +72,7 @@ function App() {
       </Route>
       <Route exact path="/accounts/login">
         <Container>
-          <Header companyName="Company, Inc." title="Рады видеть!" />
+          <Header companyName="Company, Inc." title="Glat to see you!" />
           {hasError && (
             <ErrorWrapper>
               <ErrorText>{hasError}</ErrorText>
@@ -92,7 +92,7 @@ function App() {
               </Label>
             </FormSection>
             <FormSection>
-              <Label text="Пароль">
+              <Label text="Password">
                 <PasswordInput
                   name="password"
                   onChange={handleChange}
@@ -104,7 +104,7 @@ function App() {
               </Label>
             </FormSection>
             <Button type="submit" disabled={isDisabled}>
-              Войти
+              Sign in
             </Button>
           </Form>
         </Container>

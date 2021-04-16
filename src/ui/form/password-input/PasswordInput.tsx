@@ -10,15 +10,17 @@ type PasswordInputProps = {
 } & InputHTMLAttributes<HTMLInputElement>;
 
 export const PasswordInput = ({ name, error, onChange, ...rest }: PasswordInputProps) => {
+  const SHOW_PASSWORD = "Show password";
+  const HIDE_PASSWORD = "Hide password";
   const [inputType, setInputType] = useState<string>("password");
-  const [toggleButtonText, setToggleButtonText] = useState<string>("Показать пароль");
+  const [toggleButtonText, setToggleButtonText] = useState<string>(SHOW_PASSWORD);
   const handleClick = () => {
     if (inputType === "password") {
       setInputType(() => "text");
-      setToggleButtonText(() => "Спрятать пароль");
+      setToggleButtonText(() => HIDE_PASSWORD);
     } else if (inputType === "text") {
       setInputType(() => "password");
-      setToggleButtonText(() => "Показать пароль");
+      setToggleButtonText(() => SHOW_PASSWORD);
     }
   };
 

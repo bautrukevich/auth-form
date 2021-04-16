@@ -12,7 +12,7 @@ export const TogglePasswordButton = ({ onClick, children }: TogglePasswordButton
       onClick={onClick}
       className={styles["toggle-password-button"]}
       type="button"
-      aria-label="Показать пароль как простой текст. Предупреждение: это покажет ваш пароль на экране."
+      aria-label="Show password as simple text. Attention: it will show your password on screen."
     >
       {children}
     </button>
