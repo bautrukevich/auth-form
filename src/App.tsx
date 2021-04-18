@@ -1,28 +1,24 @@
 import React, { useCallback, useEffect } from "react";
-import { Route, Switch, Redirect, useHistory } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 
 import { useAuthState } from "./infrastructure/contexts/AuthStateContext";
 import { Login } from "./ui/pages/Login";
 import { Profile } from "./ui/pages/Profile";
+import { Preloader } from "./ui/preloader/Preloader";
 
 function App() {
-  const history = useHistory();
-  const { isLoggedIn, restoreToken } = useAuthState();
+  const { isLoggedIn, restoreToken, isLoading } = useAuthState();
 
+  const restoreSession = useCallback(async () => await restoreToken(), [restoreToken]);
   useEffect(() => {
-    (async () => {
-      await restoreToken();
-    })();
-    // eslint-disable-next-line
+    restoreSession();
   }, []);
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      history.push("/");
-    }
-  }, [history, isLoggedIn]);
+  const checkLogin = () => (isLoggedIn ? <Profile /> : <Redirect to="/accounts/login" />);
 
-  const checkLogin = useCallback(() => (isLoggedIn ? <Profile /> : <Redirect to="/accounts/login" />), [isLoggedIn]);
+  if (isLoading) {
+    return <Preloader />;
+  }
 
   return (
     <Switch>
