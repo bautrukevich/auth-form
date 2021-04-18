@@ -12,6 +12,7 @@ function App() {
   const restoreSession = useCallback(async () => await restoreToken(), [restoreToken]);
   useEffect(() => {
     restoreSession();
+    // eslint-disable-next-line
   }, []);
 
   const checkLogin = () => (isLoggedIn ? <Profile /> : <Redirect to="/accounts/login" />);
