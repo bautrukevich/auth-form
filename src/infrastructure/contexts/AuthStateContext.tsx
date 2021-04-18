@@ -1,4 +1,5 @@
 import { createContext, PropsWithChildren, useContext, useReducer } from "react";
+import { useHistory } from "react-router-dom";
 
 import { AuthActionType, authStateReducer } from "./authStateReducer/authStateReducer";
 
@@ -56,6 +57,7 @@ const storage = new CookiesSecureStorage<AuthStateKey, AccessToken>(AccessToken.
 
 export const AuthStateProvider = ({ children }: PropsWithChildren<{}>) => {
   const [state, dispatch] = useReducer(authStateReducer, initialState);
+  const history = useHistory();
 
   const signInWithEmailAndPassword = async (email: string, password: string): Promise<void> => {
     clearError();
@@ -77,6 +79,8 @@ export const AuthStateProvider = ({ children }: PropsWithChildren<{}>) => {
         const handler = new GetUserInfo.Handler({ userApi });
 
         const user = await handler.handle();
+
+        history.push("/");
 
         dispatch({
           type: AuthActionType.RESTORE_SESSION,
@@ -100,6 +104,8 @@ export const AuthStateProvider = ({ children }: PropsWithChildren<{}>) => {
       const handler = new SignOut.Handler({ auth, storage });
 
       await handler.handle(command);
+
+      history.push("/accounts/login");
 
       dispatch({ type: AuthActionType.SIGN_OUT });
     } catch (e) {
