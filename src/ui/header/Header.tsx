@@ -12,7 +12,7 @@ type HeaderProps = {
 export const Header = ({ companyName, title }: HeaderProps) => {
   return (
     <header className={styles.header}>
-      <img src={logo} alt={`Логотип проекта ${companyName}`} className={styles.header__logo} />
+      <img src={logo} alt={`Logo ${companyName}`} className={styles.header__logo} />
       <h1 className={styles.header__title}>{title}</h1>
     </header>
   );
