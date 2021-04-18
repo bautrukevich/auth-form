@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 
 import { useAuthState } from "../../infrastructure/contexts/AuthStateContext";
 
@@ -7,9 +7,14 @@ import { ErrorText } from "../form/error-text/ErrorText";
 import { Header } from "../header/Header";
 import { Container } from "../container/Container";
 import { AuthForm } from "../auth-form/AuthForm";
+import { Preloader } from "../preloader/Preloader";
 
 export const Login = () => {
-  const { hasError, signInWithEmailAndPassword } = useAuthState();
+  const { hasError, isLoading, signInWithEmailAndPassword } = useAuthState();
+
+  if (isLoading) {
+    return <Preloader />;
+  }
 
   return (
     <Container>
