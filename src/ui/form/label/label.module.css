@@ -5,7 +5,8 @@
 .label-text {
   display: block;
   font-size: 14px;
-  color: #A0A0A0;
+  font-weight: bold;
+  color: var(--color-dark);
   margin: 0 0 8px;
 }
 
