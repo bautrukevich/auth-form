@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, FormEvent, useState } from "react";
+import React, { FormEvent, useState } from "react";
 
 import { FormSection } from "../form/form-section/FormSection";
 import { Label } from "../form/label/Label";
