@@ -16,8 +16,6 @@ function App() {
     // eslint-disable-next-line
   }, []);
 
-  // const checkLogin = () => (isLoggedIn ? <Profile /> : <Redirect to="/accounts/login" />);
-
   if (isLoading) {
     return <Preloader />;
   }
@@ -25,10 +23,10 @@ function App() {
   return (
     <Switch>
       <Route exact path="/">
-        {(isLoggedIn ? <Profile /> : <Redirect to="/accounts/login" />)}
+        {isLoggedIn ? <Profile /> : <Redirect to="/accounts/login" />}
       </Route>
       <Route exact path="/accounts/login">
-        <Login />
+        {isLoggedIn ? <Redirect to="/" /> : <Login />}
       </Route>
     </Switch>
   );
