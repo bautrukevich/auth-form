@@ -1,7 +1,9 @@
 import * as SignOut from "../../../auth/useCase/signOut";
-import { SECURE_AUTH_STATE_KEY } from "../../../../infrastructure/contexts/AuthStateContext";
+
+import { SECURE_AUTH_STATE_KEY } from "../../../../infrastructure/data";
 import { FakeAuth } from "../../../../infrastructure/FakeAuth";
 import { CookiesSecureStorage } from "../../../../infrastructure/CookiesSecureStorage";
+
 import { AuthStateKey } from "../../../../domain/auth/AuthStateKey";
 import { AccessToken } from "../../../../domain/auth/AccessToken";
 

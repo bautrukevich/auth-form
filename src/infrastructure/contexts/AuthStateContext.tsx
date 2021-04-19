@@ -1,19 +1,20 @@
 import { createContext, PropsWithChildren, useContext, useReducer } from "react";
+import { useHistory } from "react-router-dom";
 
 import { AuthActionType, authStateReducer } from "./authStateReducer/authStateReducer";
 
 import { AccessToken } from "../../domain/auth/AccessToken";
 import { AuthStateKey } from "../../domain/auth/AuthStateKey";
+import { User } from "../../domain/user/User";
 
 import { FakeAuth } from "../FakeAuth";
+import { FakeUserApi } from "../FakeUserApi";
 import { CookiesSecureStorage } from "../CookiesSecureStorage";
 
 import * as SignInWithEmailAndPassword from "../../application/auth/useCase/signInWithEmailAndPassword";
 import * as SignOut from "../../application/auth/useCase/signOut";
 import * as RestoreToken from "../../application/auth/useCase/restoreToken";
 import * as GetUserInfo from "../../application/user/useCase/getUserInfo";
-import { User } from "../../domain/user/User";
-import { FakeUserApi } from "../FakeUserApi";
 
 export interface AuthState {
   isLoading: boolean;
@@ -56,6 +57,7 @@ const storage = new CookiesSecureStorage<AuthStateKey, AccessToken>(AccessToken.
 
 export const AuthStateProvider = ({ children }: PropsWithChildren<{}>) => {
   const [state, dispatch] = useReducer(authStateReducer, initialState);
+  const history = useHistory();
 
   const signInWithEmailAndPassword = async (email: string, password: string): Promise<void> => {
     clearError();
@@ -77,6 +79,8 @@ export const AuthStateProvider = ({ children }: PropsWithChildren<{}>) => {
         const handler = new GetUserInfo.Handler({ userApi });
 
         const user = await handler.handle();
+
+        history.push("/");
 
         dispatch({
           type: AuthActionType.RESTORE_SESSION,
@@ -100,6 +104,8 @@ export const AuthStateProvider = ({ children }: PropsWithChildren<{}>) => {
       const handler = new SignOut.Handler({ auth, storage });
 
       await handler.handle(command);
+
+      history.push("/accounts/login");
 
       dispatch({ type: AuthActionType.SIGN_OUT });
     } catch (e) {

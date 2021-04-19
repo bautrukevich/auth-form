@@ -1,14 +1,15 @@
-import { SecureStorage, Storable } from "../application/SecureStorage";
 import Cookies from "js-cookie";
+
+import { SecureStorage, Storable } from "../application/SecureStorage";
 
 export class CookiesSecureStorage<UKey extends Storable, TValue extends Storable>
   implements SecureStorage<UKey, TValue> {
-  private static readonly EXPIRES_IN_1_HOUR = 1 / 24;
+  public static readonly EXPIRES_IN_1_HOUR = 1 / 24;
   private readonly _valueFactory;
 
   constructor(
     valueFactory: (value: string) => TValue,
-    defaults = { expires: CookiesSecureStorage.EXPIRES_IN_1_HOUR, secure: false }
+    defaults = { expires: CookiesSecureStorage.EXPIRES_IN_1_HOUR, secure: true }
   ) {
     this._valueFactory = valueFactory;
     Cookies.defaults = defaults;

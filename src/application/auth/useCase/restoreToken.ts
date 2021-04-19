@@ -1,6 +1,7 @@
 import { Auth } from "../Auth";
-import { AuthStateKey } from "../../../domain/auth/AuthStateKey";
 import { SecureStorage } from "../../SecureStorage";
+
+import { AuthStateKey } from "../../../domain/auth/AuthStateKey";
 import { AccessToken } from "../../../domain/auth/AccessToken";
 
 export class Query {

@@ -1,15 +1,18 @@
 import * as RestoreToken from "../../../auth/useCase/restoreToken";
-import { SECURE_AUTH_STATE_KEY } from "../../../../infrastructure/contexts/AuthStateContext";
+
+import { SECURE_AUTH_STATE_KEY, SECRET_TOKEN } from "../../../../infrastructure/data";
 import { FakeAuth } from "../../../../infrastructure/FakeAuth";
 import { CookiesSecureStorage } from "../../../../infrastructure/CookiesSecureStorage";
+
 import { AuthStateKey } from "../../../../domain/auth/AuthStateKey";
 import { AccessToken } from "../../../../domain/auth/AccessToken";
-import { SECRET_TOKEN } from "../../../../infrastructure/data";
 
 describe("restoreToken", () => {
   it("should be able to restore access token", async () => {
     const auth = new FakeAuth();
-    const storage = new CookiesSecureStorage<AuthStateKey, AccessToken>(AccessToken.fromString);
+
+    const defaults = { expires: CookiesSecureStorage.EXPIRES_IN_1_HOUR, secure: false };
+    const storage = new CookiesSecureStorage<AuthStateKey, AccessToken>(AccessToken.fromString, defaults);
 
     const query = RestoreToken.Query.create({ authStateKey: SECURE_AUTH_STATE_KEY });
     const handler = new RestoreToken.Handler({ auth, storage });

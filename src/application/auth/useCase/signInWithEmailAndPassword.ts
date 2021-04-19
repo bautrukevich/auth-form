@@ -1,8 +1,9 @@
 import { Auth } from "../Auth";
+import { SecureStorage } from "../../SecureStorage";
+
 import { EmailAddress } from "../../../domain/auth/EmailAddress";
 import { Password } from "../../../domain/auth/Password";
 import { AuthStateKey } from "../../../domain/auth/AuthStateKey";
-import { SecureStorage } from "../../SecureStorage";
 import { AccessToken } from "../../../domain/auth/AccessToken";
 
 export class Query {
