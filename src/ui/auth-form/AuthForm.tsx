@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, FormEvent, useState } from "react";
+import React, { FormEvent } from "react";
 
 import { FormSection } from "../form/form-section/FormSection";
 import { Label } from "../form/label/Label";
@@ -6,27 +6,14 @@ import { Input } from "../form/input/Input";
 import { PasswordInput } from "../form/password-input/PasswordInput";
 import { Button } from "../form/button/Button";
 import { Form } from "../form/Form";
+import { useFormWithValidation } from "../../infrastructure/hooks/useFormWithValidation";
 
 type AuthFormProps = {
   onSubmit: (email: string, password: string) => Promise<void>;
 };
 
 export const AuthForm = ({ onSubmit }: AuthFormProps) => {
-  const [values, setValues] = useState<Record<string, string>>({});
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [isDisabled, setIsDisabled] = useState<boolean>(true);
-
-  const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    const target = event.target;
-    const name = target.name;
-    const value = target.value;
-    const form = target.closest("form");
-
-    setValues((values) => ({ ...values, [name]: value }));
-    setErrors((errors) => ({ ...errors, [name]: target.validationMessage }));
-    setIsDisabled(form !== null && !form.checkValidity());
-  };
-
+  const { values, errors, isDisabled, handleChange } = useFormWithValidation();
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     await onSubmit(values["email"], values["password"]);
