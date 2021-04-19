@@ -1,5 +1,6 @@
 import { Auth } from "../Auth";
 import { SecureStorage } from "../../SecureStorage";
+
 import { AuthStateKey } from "../../../domain/auth/AuthStateKey";
 import { AccessToken } from "../../../domain/auth/AccessToken";
 

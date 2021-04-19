@@ -5,16 +5,16 @@ import { AuthActionType, authStateReducer } from "./authStateReducer/authStateRe
 
 import { AccessToken } from "../../domain/auth/AccessToken";
 import { AuthStateKey } from "../../domain/auth/AuthStateKey";
+import { User } from "../../domain/user/User";
 
 import { FakeAuth } from "../FakeAuth";
+import { FakeUserApi } from "../FakeUserApi";
 import { CookiesSecureStorage } from "../CookiesSecureStorage";
 
 import * as SignInWithEmailAndPassword from "../../application/auth/useCase/signInWithEmailAndPassword";
 import * as SignOut from "../../application/auth/useCase/signOut";
 import * as RestoreToken from "../../application/auth/useCase/restoreToken";
 import * as GetUserInfo from "../../application/user/useCase/getUserInfo";
-import { User } from "../../domain/user/User";
-import { FakeUserApi } from "../FakeUserApi";
 
 export interface AuthState {
   isLoading: boolean;

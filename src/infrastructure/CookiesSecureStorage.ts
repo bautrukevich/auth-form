@@ -1,5 +1,6 @@
-import { SecureStorage, Storable } from "../application/SecureStorage";
 import Cookies from "js-cookie";
+
+import { SecureStorage, Storable } from "../application/SecureStorage";
 
 export class CookiesSecureStorage<UKey extends Storable, TValue extends Storable>
   implements SecureStorage<UKey, TValue> {
