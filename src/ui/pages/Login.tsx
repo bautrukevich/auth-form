@@ -11,6 +11,10 @@ import { Preloader } from "../preloader/Preloader";
 
 export const Login = () => {
   const { hasError, isLoading, signInWithEmailAndPassword } = useAuthState();
+  const handleSubmit = async (email: string, password: string) => {
+    console.log(email, password);
+    await signInWithEmailAndPassword(email, password);
+  };
 
   if (isLoading) {
     return <Preloader />;
@@ -24,7 +28,7 @@ export const Login = () => {
           <ErrorText>{hasError}</ErrorText>
         </ErrorWrapper>
       )}
-      <AuthForm onSubmit={signInWithEmailAndPassword} />
+      <AuthForm onSubmit={handleSubmit} />
     </Container>
   );
 };

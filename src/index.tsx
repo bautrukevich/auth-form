@@ -10,13 +10,11 @@ import { AuthStateProvider } from "./infrastructure/contexts/AuthStateContext";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <AuthStateProvider>
-        <App />
-      </AuthStateProvider>
-    </BrowserRouter>
-  </React.StrictMode>,
+  <BrowserRouter>
+    <AuthStateProvider>
+      <App />
+    </AuthStateProvider>
+  </BrowserRouter>,
   document.getElementById("root")
 );
 
