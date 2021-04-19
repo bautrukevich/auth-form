@@ -12,28 +12,35 @@ type AuthFormProps = {
 };
 
 export const AuthForm = ({ onSubmit }: AuthFormProps) => {
-  const [values, setValues] = useState<Record<string, string>>({});
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [isDisabled, setIsDisabled] = useState<boolean>(true);
-
-  const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    const target = event.target;
-    const name = target.name;
-    const value = target.value;
-    const form = target.closest("form");
-
-    setValues((values) => ({ ...values, [name]: value }));
-    setErrors((errors) => ({ ...errors, [name]: target.validationMessage }));
-    setIsDisabled(form !== null && !form.checkValidity());
-  };
-
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  // const [values, setValues] = useState<Record<string, string>>({});
+  // const [errors, setErrors] = useState<Record<string, string>>({});
+  // const [isDisabled, setIsDisabled] = useState<boolean>(true);
+  //
+  // const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+  //   const target = event.target;
+  //   const name = target.name;
+  //   const value = target.value;
+  //   const form = target.closest("form");
+  //
+  //   setValues((values) => ({ ...values, [name]: value }));
+  //   setErrors((errors) => ({ ...errors, [name]: target.validationMessage }));
+  //   setIsDisabled(form !== null && !form.checkValidity());
+  // };
+  //
+  // const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+  //   console.log(values);
+  //   await onSubmit(values["email"], values["password"]);
+  // };
+  //
+  // console.log(values);
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
-    console.log(values);
-    await onSubmit(values["email"], values["password"]);
+    console.log(email, password);
+    await onSubmit(email, password);
   };
-
-  console.log(values);
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -42,8 +49,8 @@ export const AuthForm = ({ onSubmit }: AuthFormProps) => {
           <Input
             type="email"
             name="email"
-            onChange={handleChange}
-            error={errors["email"]}
+            onChange={(e) => setEmail(e.target.value)}
+            // error={errors["email"]}
             placeholder="your@email.com"
             required
           />
@@ -53,17 +60,15 @@ export const AuthForm = ({ onSubmit }: AuthFormProps) => {
         <Label text="Password">
           <PasswordInput
             name="password"
-            onChange={handleChange}
-            error={errors["password"]}
+            onChange={(e) => setPassword(e.target.value)}
+            // error={errors["password"]}
             placeholder="········"
             required
             minLength={8}
           />
         </Label>
       </FormSection>
-      <Button type="submit" disabled={isDisabled}>
-        Sign in
-      </Button>
+      <Button type="submit">Sign in</Button>
     </Form>
   );
 };
