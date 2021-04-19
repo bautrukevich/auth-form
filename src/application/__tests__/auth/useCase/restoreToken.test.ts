@@ -9,7 +9,9 @@ import { SECRET_TOKEN } from "../../../../infrastructure/data";
 describe("restoreToken", () => {
   it("should be able to restore access token", async () => {
     const auth = new FakeAuth();
-    const storage = new CookiesSecureStorage<AuthStateKey, AccessToken>(AccessToken.fromString);
+
+    const defaults = { expires: CookiesSecureStorage.EXPIRES_IN_1_HOUR, secure: false };
+    const storage = new CookiesSecureStorage<AuthStateKey, AccessToken>(AccessToken.fromString, defaults);
 
     const query = RestoreToken.Query.create({ authStateKey: SECURE_AUTH_STATE_KEY });
     const handler = new RestoreToken.Handler({ auth, storage });
