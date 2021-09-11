@@ -57,7 +57,7 @@
   },
   "devDependencies": {
     "@types/js-cookie": "^2.2.6",
-    "@types/react-router-dom": "^5.1.7",
+    "@types/react-router-dom": "5.1.8",
     "serve": "^11.3.2"
   }
 }
