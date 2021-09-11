@@ -2,10 +2,10 @@
   font-size: 14px;
   font-family: var(--font-sans);
   line-height: 1.25;
-  border-radius: 4px;
+  border-radius: 6px;
   padding: 9px 12px;
-  border: 1px solid #F9F9F9;
-  background-color: #F9F9F9;
+  border: 1px solid var(--color-warm-grey);
+  box-sizing: border-box;
   color: var(--color-dark);
   height: 40px;
   width: 100%;

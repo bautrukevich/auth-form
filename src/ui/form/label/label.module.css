@@ -5,12 +5,6 @@
 .label-text {
   display: block;
   font-size: 14px;
-  color: #A0A0A0;
+  color: var(--color-dark);
   margin: 0 0 8px;
-}
-
-@media (min-width: 450px) {
-  .label {
-    font-size: 16px;
-  }
 }
